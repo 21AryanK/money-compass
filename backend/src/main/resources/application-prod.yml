@@ -1,0 +1,19 @@
+# Production profile.
+#
+# Primary is OpenAI, fallback is AWS Bedrock Converse. Both sets of credentials
+# must be present in the environment or startup fails with a clear message.
+
+moneycompass:
+  ai:
+    primary: openai
+    fallback: bedrock
+
+management:
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  level:
+    root: WARN
+    com.moneycompass: INFO

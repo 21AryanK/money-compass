@@ -1,0 +1,122 @@
+// Angular Material 3 theme, then the system tokens overridden with the
+// Money Compass palette. Using mat.theme() rather than a hand-built theme so
+// the density and typography scales stay consistent with Material's own
+// components.
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$spring-green-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: (
+      plain-family: (Inter, system-ui, sans-serif),
+      brand-family: (Newsreader, Georgia, serif),
+    ),
+    density: 0,
+  ));
+
+  color-scheme: light dark;
+}
+
+// ---------------------------------------------------------------------------
+// Palette.
+//
+// Deep teal reads as a ledger colour rather than the product-launch indigo that
+// every dashboard reaches for; brass is the compass needle. Both are dark
+// enough to carry white text at the contrast ratios Material assumes.
+// ---------------------------------------------------------------------------
+:root {
+  --mc-teal:        #0E5C55;
+  --mc-teal-dim:    #0A4741;
+  --mc-brass:       #B4762A;
+  --mc-ink:         #16232B;
+  --mc-muted:       #5A6B72;
+  --mc-rule:        #DCE2E1;
+  --mc-surface:     #FFFFFF;
+  --mc-surface-alt: #F1F4F3;
+  --mc-danger:      #A33A2A;
+
+  --mc-measure: 62ch;
+  --mc-step: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mc-teal:        #58C4B4;
+    --mc-teal-dim:    #3FA595;
+    --mc-brass:       #D9A45B;
+    --mc-ink:         #E8EDEB;
+    --mc-muted:       #9AACB1;
+    --mc-rule:        #2A3A42;
+    --mc-surface:     #101B21;
+    --mc-surface-alt: #16232B;
+    --mc-danger:      #E08573;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--mc-surface);
+  color: var(--mc-ink);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: Newsreader, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--mc-step);
+}
+
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1.15; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.15rem; }
+
+p { margin: 0 0 var(--mc-step); max-width: var(--mc-measure); }
+
+a { color: var(--mc-teal); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+// Keyboard focus must stay visible everywhere, including inside Material.
+:focus-visible {
+  outline: 2px solid var(--mc-brass);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.mc-shell {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.mc-muted { color: var(--mc-muted); }
+
+.mc-disclaimer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mc-rule);
+  color: var(--mc-muted);
+  font-size: 0.85rem;
+  max-width: var(--mc-measure);
+}
+
+.mc-error {
+  color: var(--mc-danger);
+  font-size: 0.9rem;
+  margin: 0 0 var(--mc-step);
+}

@@ -1,0 +1,33 @@
+{
+  "name": "money-compass-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "build:prod": "ng build --configuration production",
+    "test": "ng test",
+    "watch": "ng build --watch --configuration development"
+  },
+  "dependencies": {
+    "@angular/cdk": "^22.0.0",
+    "@angular/common": "^22.0.0",
+    "@angular/compiler": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "@angular/material": "^22.0.0",
+    "@angular/platform-browser": "^22.0.0",
+    "@angular/router": "^22.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.8.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.0.0",
+    "@angular/cli": "^22.0.0",
+    "@angular/compiler-cli": "^22.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "~6.0.0",
+    "vitest": "^4.0.8",
+    "jsdom": "^26.0.0"
+  }
+}

@@ -1,0 +1,21 @@
+# Local development profile.
+#
+# Primary and fallback are both Ollama, with different system prompts, so the
+# fallback path in ResilientChatClient is exercisable without cloud credentials
+# and without spending anything.
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+moneycompass:
+  ai:
+    primary: ollama
+    fallback: ollama
+
+logging:
+  level:
+    com.moneycompass: DEBUG
+    org.hibernate.SQL: DEBUG

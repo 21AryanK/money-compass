@@ -1,0 +1,111 @@
+# Base configuration. Profile-specific overrides live in
+# application-local.yml and application-prod.yml.
+#
+# Every externally variable value below is a ${PLACEHOLDER} resolved from
+# infra/.env. There is nothing to edit in this file to point the app at a
+# different database, model, or provider.
+
+spring:
+  application:
+    name: money-compass
+
+  # Loads infra/.env as a property source so `./mvnw spring-boot:run` sees the
+  # same values docker compose does. `optional:` means a missing file is not an
+  # error, which is what you want in a container where the values arrive as real
+  # environment variables instead. The [.properties] suffix tells Spring to
+  # parse the extensionless file using the properties format.
+  config:
+    import: "optional:file:../infra/.env[.properties]"
+
+  profiles:
+    default: local
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 10000
+
+  jpa:
+    # Flyway owns the schema. Hibernate must never alter it, or the migration
+    # history and the live schema drift apart silently.
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: false
+
+  # -------------------------------------------------------------------------
+  # Spring AI. The starters land in Phase 3, so these properties are inert
+  # until then. Prefixes verified against the Spring AI 2.0 reference docs:
+  # spring.ai.bedrock.aws configures the connection, spring.ai.bedrock.converse.chat
+  # configures the Converse chat model.
+  # -------------------------------------------------------------------------
+  ai:
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${OLLAMA_MODEL:llama3.1:8b}
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      chat:
+        options:
+          model: ${OPENAI_MODEL:gpt-4o-mini}
+    bedrock:
+      aws:
+        region: ${AWS_REGION:us-east-1}
+        access-key: ${AWS_ACCESS_KEY_ID:}
+        secret-key: ${AWS_SECRET_ACCESS_KEY:}
+      converse:
+        chat:
+          options:
+            model: ${BEDROCK_MODEL:meta.llama3-1-8b-instruct-v1:0}
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    tags:
+      application: money-compass
+
+# ---------------------------------------------------------------------------
+# Application settings. Bound to MoneyCompassProperties, which validates them
+# at startup so a bad value fails fast instead of at first request.
+# ---------------------------------------------------------------------------
+moneycompass:
+  ai:
+    primary: ${AI_PRIMARY:ollama}
+    fallback: ${AI_FALLBACK:none}
+    temperature: ${AI_TEMPERATURE:0.2}
+    max-tokens: ${AI_MAX_TOKENS:800}
+  questionnaire:
+    max-questions: ${QUESTIONNAIRE_MAX_QUESTIONS:15}
+  security:
+    jwt-secret: ${JWT_SECRET}
+    jwt-ttl-hours: ${JWT_TTL_HOURS:24}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
+
+logging:
+  level:
+    com.moneycompass: INFO

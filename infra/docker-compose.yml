@@ -1,0 +1,83 @@
+# Money Compass local stack.
+#
+#   cd infra
+#   cp .env.example .env      # then fill in JWT_SECRET
+#   docker compose up postgres ollama
+#
+# Every value comes from infra/.env. There is no configuration in this file
+# that you need to edit by hand.
+
+name: money-compass
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: mc-postgres
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      # host:container. Change the host side if 5432 is already in use locally;
+      # the container side and DB_URL inside the compose network are unaffected.
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: mc-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      # Models are several GB. This volume stops you re-downloading them.
+      - ollama-models:/root/.ollama
+    # Uncomment to use an NVIDIA GPU. Requires the NVIDIA Container Toolkit on
+    # the host. Without it, Ollama runs on CPU: correct but slow (10-40s).
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: mc-backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # Inside the compose network, services are reachable by service name.
+      # These three override the host-oriented values in .env.
+      DB_URL: jdbc:postgresql://${DB_HOST_FOR_COMPOSE}:5432/${POSTGRES_DB}
+      OLLAMA_BASE_URL: http://ollama:11434
+      SPRING_CONFIG_IMPORT: ""
+    ports:
+      - "${SERVER_PORT}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+
+volumes:
+  postgres-data:
+  ollama-models:
