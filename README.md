@@ -1,8 +1,6 @@
 # Money Compass
 
-Adaptive financial literacy assessment with a deterministic scoring core and
-LLM-written explanations. Built for an Indian retail context: INR, and
-instruments like PPF, NPS, ELSS, index funds and FDs.
+Your go-to Financial Buddy that questions you and suggest you, how to make best out of your money according to your income, risk factor etc.
 
 Educational content only. Not financial advice.
 
