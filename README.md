@@ -4,21 +4,6 @@ Your go-to Financial Buddy that questions you and suggest you, how to make best 
 
 Educational content only. Not financial advice.
 
-## Status
-
-| Phase | | |
-|---|---|---|
-| 0 | Repository and local infrastructure | done |
-| 1 | Backend skeleton, persistence, auth | done |
-| 2 | Adaptive questionnaire engine | not started |
-| 3 | Spring AI integration, provider switching | not started |
-| 4 | Literacy score | not started |
-| 5 | Bedrock fallback, hardened | not started |
-| 6 | Risk and capacity module | not started |
-| 7 | Angular frontend | done, verified building |
-| 8 | Tests, observability, deployment | not started |
-| 9 | Documentation and demo | not started |
-
 ## Stack
 
 | Layer | Choice | Why this version |
