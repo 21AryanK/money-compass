@@ -45,17 +45,33 @@ spring:
     baseline-on-migrate: false
 
   # -------------------------------------------------------------------------
-  # Spring AI. The starters land in Phase 3, so these properties are inert
-  # until then. Prefixes verified against the Spring AI 2.0 reference docs:
-  # spring.ai.bedrock.aws configures the connection, spring.ai.bedrock.converse.chat
-  # configures the Converse chat model.
+  # Spring AI. The ollama starter is on the classpath from Phase 3 onward, so
+  # this section is live: Spring Boot autoconfigures a single OllamaChatModel
+  # bean from it, which ChatClientConfig wraps in a ChatClient. AI_TEMPERATURE
+  # and AI_MAX_TOKENS are the same two knobs docs/configuration.md promises
+  # apply to every provider, so they are set here rather than hardcoded.
+  #
+  # The openai and bedrock blocks stay inert placeholders: their starters are
+  # not yet dependencies (Phase 5, `prod` profile), so nothing auto-configures
+  # against them, but the property shape is already verified against the
+  # Spring AI 2.0 reference docs so Phase 5 is a dependency addition plus one
+  # branch in ResilientChatClient.resolveClient, not a redesign.
   # -------------------------------------------------------------------------
   ai:
+    # Spring AI retries every model call itself (10 attempts, backing off up
+    # to 3 minutes) unless told otherwise. ResilientChatClient already retries
+    # through Resilience4j and then falls back, so the two layers nested made
+    # an unreachable model take many minutes to fail instead of seconds.
+    # Resilience4j is the one retry layer; this one is switched off.
+    retry:
+      max-attempts: 1
     ollama:
       base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
       chat:
         options:
           model: ${OLLAMA_MODEL:llama3.1:8b}
+          temperature: ${AI_TEMPERATURE:0.2}
+          num-predict: ${AI_MAX_TOKENS:800}
     openai:
       api-key: ${OPENAI_API_KEY:}
       chat:
@@ -99,12 +115,42 @@ moneycompass:
     temperature: ${AI_TEMPERATURE:0.2}
     max-tokens: ${AI_MAX_TOKENS:800}
   questionnaire:
-    max-questions: ${QUESTIONNAIRE_MAX_QUESTIONS:15}
+    max-questions: ${QUESTIONNAIRE_MAX_QUESTIONS:30}
   security:
     jwt-secret: ${JWT_SECRET}
     jwt-ttl-hours: ${JWT_TTL_HOURS:24}
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
+
+# ---------------------------------------------------------------------------
+# Resilience4j. ResilientChatClient decorates each provider call with one
+# circuit breaker and one retry, looked up here by name ("ai-primary" /
+# "ai-fallback"). Two named instances rather than one shared instance so that
+# a struggling primary cannot trip the breaker that protects the fallback.
+# ---------------------------------------------------------------------------
+resilience4j:
+  circuitbreaker:
+    instances:
+      ai-primary:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+      ai-fallback:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+  retry:
+    instances:
+      ai-primary:
+        max-attempts: 2
+        wait-duration: 500ms
+      ai-fallback:
+        max-attempts: 2
+        wait-duration: 500ms
 
 logging:
   level:

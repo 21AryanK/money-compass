@@ -1,0 +1,2427 @@
+[
+ {
+  "code": "age",
+  "text": "How old are you?",
+  "type": "NUMBER",
+  "options": null,
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": null,
+  "hint": "Not scored — it sets your retirement timeline and how much risk suits your stage of life.",
+  "unit": "years",
+  "minValue": 15,
+  "maxValue": 100,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "hint": "Not scored — it tells us how many years your money has to grow."
+   },
+   "RETIREE": {
+    "hint": "Not scored — it shapes how long your savings need to last and how much risk suits you."
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 10,
+  "knowledgeTopic": null,
+  "wikiTitle": null
+ },
+ {
+  "code": "monthly_income",
+  "text": "Roughly what is your monthly take-home income?",
+  "type": "NUMBER",
+  "options": null,
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": null,
+  "hint": "What reaches your account after tax and EPF: salary, pension plus regular withdrawals, or allowance and part-time pay. Not scored — it sizes your plan.",
+  "unit": "₹ per month",
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "How much money comes to you in a typical month?",
+    "unit": "₹ per month",
+    "hint": "Pocket money, allowance, stipend, scholarship, part-time or internship pay — whatever reaches you. Enter 0 if nothing comes regularly. Not scored — it sizes your plan."
+   },
+   "RETIREE": {
+    "text": "Roughly how much comes in each month?",
+    "unit": "₹ per month",
+    "hint": "Pension, annuity, interest, rent and any regular withdrawals from your savings, after tax. Not scored — it sizes your plan."
+   },
+   "PROFESSIONAL": {
+    "hint": "Your salary as it lands in your account — after tax, EPF and other deductions — plus any regular side or freelance income. Not scored — it sizes your plan."
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 20,
+  "knowledgeTopic": null,
+  "wikiTitle": null
+ },
+ {
+  "code": "monthly_income_range_student",
+  "text": "No problem — roughly how much comes to you in a typical month?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Nothing regular",
+   "B": "Under ₹2,000",
+   "C": "₹2,000 – ₹5,000",
+   "D": "₹5,000 – ₹15,000",
+   "E": "More than ₹15,000"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": null,
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": "monthly_income",
+  "valueMap": {
+   "A": {
+    "number": 0
+   },
+   "B": {
+    "number": 1000
+   },
+   "C": {
+    "number": 3500
+   },
+   "D": {
+    "number": 10000
+   },
+   "E": {
+    "number": 20000
+   }
+  },
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 30,
+  "knowledgeTopic": null,
+  "wikiTitle": null
+ },
+ {
+  "code": "monthly_income_range",
+  "text": "No problem — which range is your monthly take-home (salary, pension, or allowance) closest to?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Under ₹25,000",
+   "B": "₹25,000 – ₹50,000",
+   "C": "₹50,000 – ₹1,00,000",
+   "D": "₹1,00,000 – ₹2,00,000",
+   "E": "Above ₹2,00,000"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": null,
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "RETIREE": {
+    "text": "No problem — which range is your monthly income (pension, interest, rent and withdrawals together) closest to?"
+   },
+   "PROFESSIONAL": {
+    "text": "No problem — which range is your monthly in-hand salary (plus any regular side income) closest to?"
+   }
+  },
+  "clarifies": "monthly_income",
+  "valueMap": {
+   "A": {
+    "number": 15000
+   },
+   "B": {
+    "number": 37500
+   },
+   "C": {
+    "number": 75000
+   },
+   "D": {
+    "number": 150000
+   },
+   "E": {
+    "number": 250000
+   }
+  },
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 40,
+  "knowledgeTopic": null,
+  "wikiTitle": null
+ },
+ {
+  "code": "budgeting_expense_tracking",
+  "text": "How do you currently track your monthly expenses?",
+  "type": "SINGLE",
+  "options": {
+   "A": "I don't track them at all",
+   "B": "Rough mental estimate",
+   "C": "Spreadsheet or app, checked occasionally",
+   "D": "Detailed tracking, reviewed every month"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 3,
+    "C": 7,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 50,
+  "knowledgeTopic": null,
+  "wikiTitle": "Personal budget"
+ },
+ {
+  "code": "budgeting_needs_wants",
+  "text": "Which of these is a “want” rather than a “need”?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Rent for a room near your college or work",
+   "B": "Groceries for cooking at home",
+   "C": "Upgrading to a new phone while yours still works fine",
+   "D": "A health insurance premium"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "RETIREE": {
+    "options": {
+     "A": "Your regular medicines",
+     "B": "Groceries for cooking at home",
+     "C": "Upgrading to a new phone while yours still works fine",
+     "D": "A health insurance premium"
+    }
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 60,
+  "knowledgeTopic": "needs vs. wants",
+  "wikiTitle": "Need"
+ },
+ {
+  "code": "budgeting_savings_rate",
+  "text": "Roughly what percentage of your take-home income do you save or invest in a typical month?",
+  "type": "NUMBER",
+  "options": null,
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "numberThresholds": [
+    {
+     "min": 20,
+     "points": 10
+    },
+    {
+     "min": 10,
+     "points": 6
+    },
+    {
+     "min": 0,
+     "points": 2
+    }
+   ]
+  },
+  "hint": "Count SIPs, RDs, and money you move to savings. Leave out EPF — it's already taken out before your take-home.",
+  "unit": "% of take-home",
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "Roughly what share of the money you get each month do you save or invest?",
+    "unit": "% of what you get",
+    "hint": "Count anything you put aside — money left in your savings account counts, and so does an SIP."
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 70,
+  "knowledgeTopic": null,
+  "wikiTitle": "Saving"
+ },
+ {
+  "code": "budgeting_savings_rate_simple",
+  "text": "Let's try it another way — at the end of a typical month, how much of your income is usually left over?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Nothing, or I overspend",
+   "B": "A little — under a tenth of it",
+   "C": "Somewhere between a tenth and a fifth",
+   "D": "More than a fifth"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": null,
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "Let's try it another way — at the end of a typical month, how much of your money is usually left over?"
+   }
+  },
+  "clarifies": "budgeting_savings_rate",
+  "valueMap": {
+   "A": {
+    "number": 0
+   },
+   "B": {
+    "number": 5
+   },
+   "C": {
+    "number": 15
+   },
+   "D": {
+    "number": 25
+   }
+  },
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 80,
+  "knowledgeTopic": null,
+  "wikiTitle": "Saving"
+ },
+ {
+  "code": "budgeting_fixed_expenses",
+  "text": "Which of these are usually fixed, hard-to-change monthly expenses? Select all that apply.",
+  "type": "MULTI",
+  "options": {
+   "A": "Hostel or PG rent",
+   "B": "Weekend outings",
+   "C": "Mobile and internet plan",
+   "D": "Food delivery"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correctSet": [
+    "A",
+    "C"
+   ],
+   "points": 10
+  },
+  "hint": "Select every option that applies.",
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 90,
+  "knowledgeTopic": "fixed vs. flexible expenses",
+  "wikiTitle": "Fixed cost"
+ },
+ {
+  "code": "budgeting_recurring_bills",
+  "text": "How do you handle recurring bills — rent, EMI, utilities — each month?",
+  "type": "SINGLE",
+  "options": {
+   "A": "I sometimes pay late",
+   "B": "I pay manually, but on time",
+   "C": "Auto-debit is set up for most of them",
+   "D": "Auto-debit is set up, and I review it monthly"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 5,
+    "C": 8,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 100,
+  "knowledgeTopic": null,
+  "wikiTitle": "Direct debit"
+ },
+ {
+  "code": "retiree_budget_fixed_income",
+  "text": "In retirement, how do you manage monthly expenses against your pension or withdrawal income?",
+  "type": "SINGLE",
+  "options": {
+   "A": "I don't have a clear budget",
+   "B": "A rough idea, no formal budget",
+   "C": "I track it monthly against my income",
+   "D": "I track it monthly and re-check it against inflation each year"
+  },
+  "category": "BUDGETING",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 3,
+    "C": 7,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 110,
+  "knowledgeTopic": null,
+  "wikiTitle": "Personal budget"
+ },
+ {
+  "code": "saving_emergency_fund_months",
+  "text": "How many months of essential expenses could you cover from money you can withdraw within a few days?",
+  "type": "NUMBER",
+  "options": null,
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 2,
+  "rubric": {
+   "numberThresholds": [
+    {
+     "min": 6,
+     "points": 10
+    },
+    {
+     "min": 3,
+     "points": 6
+    },
+    {
+     "min": 1,
+     "points": 3
+    },
+    {
+     "min": 0,
+     "points": 0
+    }
+   ]
+  },
+  "hint": "Count savings accounts, liquid funds and FDs you can break. Leave out stocks, PPF, EPF and gold.",
+  "unit": "months",
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "If you suddenly needed money — a broken phone, a doctor's visit, a trip home — how many months of your usual spending could you cover from your own savings, without asking anyone?",
+    "hint": "Count savings you can get to within a few days. Money your family would step in with doesn't count here."
+   },
+   "RETIREE": {
+    "hint": "Count savings accounts, liquid funds and FDs you can break early. Leave out money locked in SCSS, annuities, equity and gold."
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 120,
+  "knowledgeTopic": null,
+  "wikiTitle": "Emergency fund"
+ },
+ {
+  "code": "saving_emergency_fund_simple",
+  "text": "Put simply: if your income stopped today, how long could you keep paying rent, food and bills from money you can get to quickly?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Less than a month",
+   "B": "1 to 3 months",
+   "C": "3 to 6 months",
+   "D": "More than 6 months"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 2,
+  "rubric": null,
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "Put simply: if your pocket money or stipend stopped, how long could your own savings cover your usual spending — phone, travel, food outside home?"
+   },
+   "RETIREE": {
+    "text": "Put simply: if your pension or other income was held up, how long could you keep paying for food, medicines and bills from money you can get to quickly?"
+   },
+   "PROFESSIONAL": {
+    "text": "Put simply: if you lost your job today, how long could you keep paying rent, EMIs, food and bills from money you can get to quickly?"
+   }
+  },
+  "clarifies": "saving_emergency_fund_months",
+  "valueMap": {
+   "A": {
+    "number": 0
+   },
+   "B": {
+    "number": 2
+   },
+   "C": {
+    "number": 4
+   },
+   "D": {
+    "number": 6
+   }
+  },
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 130,
+  "knowledgeTopic": null,
+  "wikiTitle": "Emergency fund"
+ },
+ {
+  "code": "saving_emergency_fund_where",
+  "text": "Where is the most sensible place to keep an emergency fund?",
+  "type": "SINGLE",
+  "options": {
+   "A": "In stocks, so it grows faster",
+   "B": "A savings account or liquid fund you can withdraw from any day",
+   "C": "Gold jewellery at home",
+   "D": "A 5-year locked tax-saver FD"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": {
+   "unknownOrNumberBelow": {
+    "question": "saving_emergency_fund_months",
+    "value": 3
+   }
+  },
+  "followUpReason": "Follow-up — your emergency cushion looks thin, so a quick check on where one should live.",
+  "advanced": false,
+  "sortOrder": 140,
+  "knowledgeTopic": "where to keep an emergency fund",
+  "wikiTitle": "Money market fund"
+ },
+ {
+  "code": "saving_fd_vs_savings",
+  "text": "Which of these typically earns a higher rate of interest?",
+  "type": "SINGLE",
+  "options": {
+   "A": "A regular savings account",
+   "B": "A fixed deposit (FD) at the same bank",
+   "C": "They always pay the same rate",
+   "D": "A savings account, because you can withdraw any time"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 150,
+  "knowledgeTopic": "FD vs. savings account rates",
+  "wikiTitle": "Fixed deposit"
+ },
+ {
+  "code": "saving_emergency_fund_purpose",
+  "text": "What's the main purpose of an emergency fund?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Grow wealth quickly",
+   "B": "Cover unexpected essential expenses without new debt",
+   "C": "Pay for vacations",
+   "D": "Maximise investment returns"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 160,
+  "knowledgeTopic": "what an emergency fund is for",
+  "wikiTitle": "Emergency fund"
+ },
+ {
+  "code": "retiree_scam_digital_arrest",
+  "text": "A video caller in uniform says your Aadhaar is linked to a crime, you're under \"digital arrest\", and you must transfer money to clear your name. What should you do?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Pay quickly and quietly to avoid trouble",
+   "B": "Hang up: no police or agency arrests anyone over a video call or asks for money — report it on 1930 or cybercrime.gov.in",
+   "C": "Share your bank OTP so they can verify your account",
+   "D": "Stay on the call and ask a family member to send the money"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 170,
+  "knowledgeTopic": "spotting \"digital arrest\" scams",
+  "wikiTitle": "Digital arrest scam"
+ },
+ {
+  "code": "saving_upi_safety",
+  "text": "A stranger says they sent you money by mistake and sends a UPI request asking you to return it. What should you do?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Approve it and enter your UPI PIN — it's only fair",
+   "B": "Don't approve it: you never need your PIN to receive money — check your bank app and report the request",
+   "C": "Share the OTP they ask for so the bank can reverse it",
+   "D": "Approve half the amount to be safe"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 180,
+  "knowledgeTopic": "staying safe on UPI",
+  "wikiTitle": "Unified Payments Interface"
+ },
+ {
+  "code": "saving_automatic_transfer",
+  "text": "How do you usually save each month?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Whatever is left over, if anything",
+   "B": "Occasionally, when I remember",
+   "C": "A recurring deposit or SIP is set up",
+   "D": "Saving is automated the day I get paid"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 3,
+    "C": 7,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "options": {
+     "A": "Whatever is left over, if anything",
+     "B": "Occasionally, when I remember",
+     "C": "A recurring deposit or SIP is set up",
+     "D": "I set some aside the day my allowance or stipend arrives"
+    }
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 190,
+  "knowledgeTopic": null,
+  "wikiTitle": "Systematic investment plan"
+ },
+ {
+  "code": "saving_health_insurance",
+  "text": "What health insurance covers you today?",
+  "type": "SINGLE",
+  "options": {
+   "A": "None",
+   "B": "Only a policy through my employer or college",
+   "C": "A personal or family floater policy",
+   "D": "A personal or family policy, plus a top-up or super top-up"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 5,
+    "C": 8,
+    "D": 10
+   }
+  },
+  "hint": "A parent's family floater that includes you counts as a family policy.",
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "PROFESSIONAL": {
+    "hint": "Your employer's group cover usually ends the day you leave the job — a policy of your own stays with you.",
+    "options": {
+     "A": "None",
+     "B": "Only my employer's group policy",
+     "C": "A personal or family floater policy",
+     "D": "A personal or family policy, plus a top-up or super top-up"
+    }
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 200,
+  "knowledgeTopic": null,
+  "wikiTitle": "Health insurance in India"
+ },
+ {
+  "code": "dependents",
+  "text": "How many people depend on your income — a partner, children or parents?",
+  "type": "SINGLE",
+  "options": {
+   "A": "No one",
+   "B": "1 or 2 people",
+   "C": "3 or more people"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": null,
+  "hint": "Not scored — it shapes how much risk your plan can take and whether you need life cover.",
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 210,
+  "knowledgeTopic": null,
+  "wikiTitle": null
+ },
+ {
+  "code": "saving_term_insurance",
+  "text": "If something happened to you, what life cover would your family get?",
+  "type": "SINGLE",
+  "options": {
+   "A": "None, or only my employer's group cover",
+   "B": "An endowment or money-back policy",
+   "C": "A term plan of under 10× my annual income",
+   "D": "A term plan of 10× my annual income or more"
+  },
+  "category": "SAVING",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 3,
+    "C": 6,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": {
+   "selectedIn": {
+    "question": "dependents",
+    "values": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  "followUpReason": "Follow-up — because others depend on your income.",
+  "advanced": false,
+  "sortOrder": 220,
+  "knowledgeTopic": null,
+  "wikiTitle": "Term life insurance"
+ },
+ {
+  "code": "debt_high_interest_status",
+  "text": "Do you carry any high-interest debt — an unpaid credit card balance, or a personal or app-based loan above roughly 12% a year?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Yes",
+   "B": "No — I pay my card in full each month, or have no such loans"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 2,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "Do you owe money on a credit card, Buy Now Pay Later (BNPL) or an instant-loan app that you haven't fully paid off?",
+    "options": {
+     "A": "Yes",
+     "B": "No — or I don't use any of these"
+    }
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 230,
+  "knowledgeTopic": null,
+  "wikiTitle": "Credit card interest"
+ },
+ {
+  "code": "debt_high_interest_simple",
+  "text": "In the last few months, have you paid only part of a credit card bill, or taken a personal or app-based loan?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Yes",
+   "B": "No — or I don't have a credit card or loans"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 2,
+  "rubric": null,
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "In the last few months, have you missed or only part-paid a credit card, Buy Now Pay Later or loan-app payment?"
+   }
+  },
+  "clarifies": "debt_high_interest_status",
+  "valueMap": {
+   "A": {
+    "selected": "A"
+   },
+   "B": {
+    "selected": "B"
+   }
+  },
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 240,
+  "knowledgeTopic": null,
+  "wikiTitle": "Credit card interest"
+ },
+ {
+  "code": "debt_payoff_plan",
+  "text": "What's your plan for paying off that high-interest debt?",
+  "type": "SINGLE",
+  "options": {
+   "A": "No plan yet",
+   "B": "Paying only the minimum due",
+   "C": "Paying more than the minimum when I can",
+   "D": "A fixed extra amount every month, highest-rate or smallest debt first"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 2,
+    "C": 7,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": {
+   "selectedIn": {
+    "question": "debt_high_interest_status",
+    "values": [
+     "A"
+    ]
+   }
+  },
+  "followUpReason": "Follow-up — because you're carrying high-interest debt.",
+  "advanced": false,
+  "sortOrder": 250,
+  "knowledgeTopic": null,
+  "wikiTitle": "Debt snowball method"
+ },
+ {
+  "code": "debt_good_vs_bad",
+  "text": "Which of these are usually considered “good debt” — the kind that can build long-term value? Select all that apply.",
+  "type": "MULTI",
+  "options": {
+   "A": "An education loan for a recognised course",
+   "B": "Buy Now Pay Later for the latest phone",
+   "C": "A home loan, later in life",
+   "D": "An instant-loan app for a weekend trip"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correctSet": [
+    "A",
+    "C"
+   ],
+   "points": 10
+  },
+  "hint": "Select every option that applies.",
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 260,
+  "knowledgeTopic": "good vs. bad debt",
+  "wikiTitle": "Debt"
+ },
+ {
+  "code": "debt_interest_type",
+  "text": "A credit card typically charges roughly how much interest a year if you carry a balance?",
+  "type": "SINGLE",
+  "options": {
+   "A": "3–5%",
+   "B": "8–12%",
+   "C": "36–45%",
+   "D": "80–100%"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 270,
+  "knowledgeTopic": "what credit cards really charge",
+  "wikiTitle": "Credit card interest"
+ },
+ {
+  "code": "debt_student_loan_interest",
+  "text": "On a regular education loan with no interest subsidy, what happens to interest while you're studying and in the moratorium?",
+  "type": "SINGLE",
+  "options": {
+   "A": "None is charged until repayments start",
+   "B": "It keeps building up and gets added to what you owe, unless you pay it",
+   "C": "The bank waives it if you finish the course",
+   "D": "It's paid for you by the government"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": true,
+  "sortOrder": 280,
+  "knowledgeTopic": "how education-loan interest builds up while you study",
+  "wikiTitle": "Student loan"
+ },
+ {
+  "code": "debt_credit_card_habit",
+  "text": "You're offered your first credit card. What's the safest way to use it?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Pay the full bill every month, on time",
+   "B": "Pay only the minimum due each month",
+   "C": "Max it out for the reward points",
+   "D": "Never activate it — just keep it in a drawer"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 10,
+    "B": 2,
+    "C": 0,
+    "D": 6
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 290,
+  "knowledgeTopic": null,
+  "wikiTitle": "Credit card"
+ },
+ {
+  "code": "debt_emi_share",
+  "text": "Roughly how much of your take-home income goes to EMIs and loan repayments each month?",
+  "type": "SINGLE",
+  "options": {
+   "A": "None — I have no EMIs",
+   "B": "Under 20%",
+   "C": "20% to 40%",
+   "D": "More than 40%"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 10,
+    "B": 8,
+    "C": 4,
+    "D": 0
+   }
+  },
+  "hint": "Banks usually get cautious about lending once this passes 40–50%.",
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 300,
+  "knowledgeTopic": null,
+  "wikiTitle": "Debt-to-income ratio"
+ },
+ {
+  "code": "debt_loan_priority",
+  "text": "You're carrying both a home loan at roughly 8.5% and a credit card balance at roughly 36%. Which should you prioritise paying off faster?",
+  "type": "SINGLE",
+  "options": {
+   "A": "The home loan — it's the bigger number",
+   "B": "The credit card — it's the higher rate",
+   "C": "Split extra payments evenly between both",
+   "D": "Neither — just pay the minimums on both"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 310,
+  "knowledgeTopic": "which loan to repay first",
+  "wikiTitle": "Debt snowball method"
+ },
+ {
+  "code": "retiree_debt_in_retirement",
+  "text": "Do you still have any active loans — home, personal, or otherwise — that you're repaying in retirement?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Yes, a large EMI relative to my income",
+   "B": "Yes, but a small, manageable EMI",
+   "C": "No, I'm debt-free"
+  },
+  "category": "DEBT",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 5,
+    "C": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 320,
+  "knowledgeTopic": null,
+  "wikiTitle": "Equated monthly installment"
+ },
+ {
+  "code": "risk_market_drop_reaction",
+  "text": "If your investment portfolio dropped 20% in a month, how would you react?",
+  "type": "SCALE",
+  "options": null,
+  "category": "RISK",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 2,
+  "rubric": {
+   "scale": {
+    "1": 0,
+    "2": 3,
+    "3": 6,
+    "4": 8,
+    "5": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": [
+   "Panic and sell everything",
+   "Stay invested, maybe buy more"
+  ],
+  "variants": {
+   "STUDENT": {
+    "text": "Imagine ₹10,000 of your savings was invested, and a month later it's worth ₹8,000. How would you react?"
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 330,
+  "knowledgeTopic": null,
+  "wikiTitle": "Loss aversion"
+ },
+ {
+  "code": "risk_drop_rupees",
+  "text": "Imagine you invested ₹1,00,000 and a month later it's worth ₹80,000. What would you most likely do?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Sell everything before it falls further",
+   "B": "Sell some of it",
+   "C": "Leave it alone and wait",
+   "D": "Invest a bit more while prices are low"
+  },
+  "category": "RISK",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 2,
+  "rubric": null,
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "text": "Imagine you invested ₹10,000 and a month later it's worth ₹8,000. What would you most likely do?"
+   }
+  },
+  "clarifies": "risk_market_drop_reaction",
+  "valueMap": {
+   "A": {
+    "scale": 1
+   },
+   "B": {
+    "scale": 2
+   },
+   "C": {
+    "scale": 4
+   },
+   "D": {
+    "scale": 5
+   }
+  },
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 340,
+  "knowledgeTopic": null,
+  "wikiTitle": "Loss aversion"
+ },
+ {
+  "code": "risk_equity_experience",
+  "text": "Have you ever held stocks or equity mutual funds through a big market fall?",
+  "type": "SINGLE",
+  "options": {
+   "A": "I've never invested in equity",
+   "B": "I've invested, but never through a big fall",
+   "C": "Yes — and I sold during the fall",
+   "D": "Yes — and I stayed invested"
+  },
+  "category": "RISK",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 2,
+    "B": 5,
+    "C": 3,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": {
+   "unknownOrScaleAtMost": {
+    "question": "risk_market_drop_reaction",
+    "value": 2
+   }
+  },
+  "followUpReason": "Follow-up — to understand where your caution about market falls comes from.",
+  "advanced": false,
+  "sortOrder": 350,
+  "knowledgeTopic": null,
+  "wikiTitle": "Stock market crash"
+ },
+ {
+  "code": "risk_volatility_understanding",
+  "text": "Which of these typically has the highest short-term price volatility?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Fixed deposit",
+   "B": "PPF (Public Provident Fund)",
+   "C": "Equity mutual fund",
+   "D": "Savings account"
+  },
+  "category": "RISK",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 360,
+  "knowledgeTopic": "which investments swing the most",
+  "wikiTitle": "Volatility (finance)"
+ },
+ {
+  "code": "risk_horizon",
+  "text": "When will you need most of the money you're saving or investing?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Within a year",
+   "B": "In 1 to 3 years",
+   "C": "In 3 to 7 years",
+   "D": "Not for 7 years or more"
+  },
+  "category": "RISK",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL"
+  ],
+  "weight": 2,
+  "rubric": {
+   "optionPoints": {
+    "A": 2,
+    "B": 4,
+    "C": 7,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": {
+   "STUDENT": {
+    "hint": "Think of your bigger plans — a laptop, a course, higher studies, moving city for a first job."
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 370,
+  "knowledgeTopic": null,
+  "wikiTitle": "Time horizon"
+ },
+ {
+  "code": "retiree_inflation_awareness",
+  "text": "Over a 20-year retirement, which of these typically poses the bigger risk to your purchasing power?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Day-to-day market volatility",
+   "B": "Inflation quietly eroding fixed income",
+   "C": "Bank service charges",
+   "D": "Currency exchange rates"
+  },
+  "category": "RISK",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 380,
+  "knowledgeTopic": "inflation risk in retirement",
+  "wikiTitle": "Inflation"
+ },
+ {
+  "code": "compounding_rule_of_72",
+  "text": "Using the Rule of 72, roughly how many years does it take to double your money at 8% annual return?",
+  "type": "SINGLE",
+  "options": {
+   "A": "4 years",
+   "B": "9 years",
+   "C": "14 years",
+   "D": "20 years"
+  },
+  "category": "COMPOUNDING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 2,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 390,
+  "knowledgeTopic": "the Rule of 72",
+  "wikiTitle": "Rule of 72"
+ },
+ {
+  "code": "compounding_early_start",
+  "text": "Two people invest the same amount monthly. Person A starts at 25, Person B at 35; both stop at 45 and let it grow, untouched, at the same return. Who generally ends up with more?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Person A",
+   "B": "Person B",
+   "C": "They always end up equal",
+   "D": "Impossible to know"
+  },
+  "category": "COMPOUNDING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL"
+  ],
+  "weight": 2,
+  "rubric": {
+   "correct": "A",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 400,
+  "knowledgeTopic": "the cost of starting late",
+  "wikiTitle": "Compound interest"
+ },
+ {
+  "code": "compounding_pay_rise",
+  "text": "You get a 15% raise. What usually does the most for your long-term wealth?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Upgrade your lifestyle by the full amount — you've earned it",
+   "B": "Raise your SIP by part of the raise before your spending catches up",
+   "C": "Leave the extra sitting in your savings account",
+   "D": "Take a bigger loan now that you can afford a larger EMI"
+  },
+  "category": "COMPOUNDING",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 10,
+    "C": 4,
+    "D": 0
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 410,
+  "knowledgeTopic": null,
+  "wikiTitle": "Lifestyle creep"
+ },
+ {
+  "code": "compounding_basics_probe",
+  "text": "You deposit ₹10,000 at 10% interest a year, compounded yearly, and don't touch it. Roughly how much is there after 2 years?",
+  "type": "SINGLE",
+  "options": {
+   "A": "₹11,000",
+   "B": "₹12,000",
+   "C": "₹12,100",
+   "D": "₹20,000"
+  },
+  "category": "COMPOUNDING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": {
+   "knowledgeGap": "COMPOUNDING"
+  },
+  "followUpReason": "Follow-up — checking the basics of compounding before we call it a gap.",
+  "advanced": false,
+  "sortOrder": 420,
+  "knowledgeTopic": "how compound interest adds up",
+  "wikiTitle": "Compound interest"
+ },
+ {
+  "code": "investing_index_fund_def",
+  "text": "What does an index fund do?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Actively picks stocks to try to beat the market",
+   "B": "Tracks a market index, like the Nifty 50, passively",
+   "C": "Guarantees a fixed return",
+   "D": "Only invests in gold"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL"
+  ],
+  "weight": 2,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 430,
+  "knowledgeTopic": "what index funds do",
+  "wikiTitle": "Index fund"
+ },
+ {
+  "code": "investing_first_step",
+  "text": "As a student with limited money to invest, what's a reasonable way to start?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Wait until I have a large lump sum",
+   "B": "Try to time the market for the perfect entry point",
+   "C": "Start a small SIP in an index fund",
+   "D": "Put everything into one hot stock tip"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 2,
+    "B": 0,
+    "C": 10,
+    "D": 0
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 440,
+  "knowledgeTopic": null,
+  "wikiTitle": "Dollar-cost averaging"
+ },
+ {
+  "code": "investing_scam_check",
+  "text": "A senior adds you to a Telegram group promising \"guaranteed 10% a month\" from trading or crypto. What's the best way to read it?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Join fast — early members earn the most",
+   "B": "Try a small amount first to test it",
+   "C": "Treat it as a likely scam: no genuine investment can guarantee returns like that",
+   "D": "It's fine if lots of people vouch for it"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "STUDENT"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 450,
+  "knowledgeTopic": "spotting \"guaranteed return\" scams",
+  "wikiTitle": "Ponzi scheme"
+ },
+ {
+  "code": "investing_elss_lockin",
+  "text": "What is the lock-in period for ELSS (tax-saving) mutual funds in India?",
+  "type": "SINGLE",
+  "options": {
+   "A": "No lock-in",
+   "B": "1 year",
+   "C": "3 years",
+   "D": "5 years"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": true,
+  "sortOrder": 460,
+  "knowledgeTopic": "the ELSS lock-in",
+  "wikiTitle": "Equity Linked Savings Scheme"
+ },
+ {
+  "code": "investing_80c_options",
+  "text": "Under the old tax regime, which of these can you claim as deductions under Section 80C? Select all that apply.",
+  "type": "MULTI",
+  "options": {
+   "A": "PPF",
+   "B": "ELSS mutual funds",
+   "C": "Regular savings account",
+   "D": "5-year tax-saver FD"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correctSet": [
+    "A",
+    "B",
+    "D"
+   ],
+   "points": 10
+  },
+  "hint": "Select every option that applies. The new regime (the default since 2023) doesn't allow 80C.",
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": true,
+  "sortOrder": 470,
+  "knowledgeTopic": "Section 80C options",
+  "wikiTitle": "Income tax in India"
+ },
+ {
+  "code": "investing_tax_regime",
+  "text": "Since FY 2025-26, under the new tax regime, a salaried person earning up to about how much a year pays no income tax at all?",
+  "type": "SINGLE",
+  "options": {
+   "A": "₹5 lakh",
+   "B": "₹7.75 lakh",
+   "C": "₹12.75 lakh",
+   "D": "₹20 lakh"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": "The new regime is the default; you can still choose the old one if your deductions (80C, HRA, home loan) are large.",
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 480,
+  "knowledgeTopic": "the new tax regime's ₹12.75 lakh zero-tax limit",
+  "wikiTitle": "Income tax in India"
+ },
+ {
+  "code": "retiree_scss_awareness",
+  "text": "What is the Senior Citizens' Savings Scheme (SCSS)?",
+  "type": "SINGLE",
+  "options": {
+   "A": "A government-backed fixed-income scheme, mainly for people aged 60 and over",
+   "B": "A private equity mutual fund",
+   "C": "A type of health insurance policy",
+   "D": "A tax filing category"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "A",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 490,
+  "knowledgeTopic": "the Senior Citizens' Savings Scheme",
+  "wikiTitle": "India Post"
+ },
+ {
+  "code": "retiree_swp_def",
+  "text": "What does an SWP (Systematic Withdrawal Plan) let you do?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Invest a fixed amount every month",
+   "B": "Withdraw a fixed amount from your investments at regular intervals",
+   "C": "Automatically switch between mutual funds",
+   "D": "Borrow against your mutual fund units"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 500,
+  "knowledgeTopic": "systematic withdrawal plans (SWP)",
+  "wikiTitle": "Retirement spend-down"
+ },
+ {
+  "code": "investing_basics_probe",
+  "text": "Why is spreading your money across many companies usually safer than putting it all into one?",
+  "type": "SINGLE",
+  "options": {
+   "A": "It guarantees a higher return",
+   "B": "One company doing badly hurts you much less",
+   "C": "It avoids all taxes",
+   "D": "It isn't — one good company is always safer"
+  },
+  "category": "INVESTING",
+  "applicableProfiles": [
+   "STUDENT",
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": {
+   "knowledgeGap": "INVESTING"
+  },
+  "followUpReason": "Follow-up — checking the basics of investing before we call it a gap.",
+  "advanced": false,
+  "sortOrder": 510,
+  "knowledgeTopic": "diversification",
+  "wikiTitle": "Diversification (finance)"
+ },
+ {
+  "code": "retirement_ppf_lockin",
+  "text": "What is the standard maturity period of a PPF account in India?",
+  "type": "SINGLE",
+  "options": {
+   "A": "5 years",
+   "B": "10 years",
+   "C": "15 years",
+   "D": "21 years"
+  },
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "C",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 520,
+  "knowledgeTopic": "PPF maturity",
+  "wikiTitle": "Public Provident Fund (India)"
+ },
+ {
+  "code": "retirement_readiness",
+  "text": "How confident are you that your current savings and investments are on track for retirement?",
+  "type": "SCALE",
+  "options": null,
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "PROFESSIONAL",
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "scale": {
+    "1": 0,
+    "2": 3,
+    "3": 5,
+    "4": 8,
+    "5": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": [
+   "Not confident",
+   "Very confident"
+  ],
+  "variants": {
+   "RETIREE": {
+    "text": "How confident are you that your savings and investments will last through your retirement?"
+   }
+  },
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 530,
+  "knowledgeTopic": null,
+  "wikiTitle": "Retirement planning"
+ },
+ {
+  "code": "retirement_nps_tax",
+  "text": "Under the old tax regime, which section gives an extra deduction of up to ₹50,000 for your own NPS contributions, beyond the ₹1.5 lakh 80C limit?",
+  "type": "SINGLE",
+  "options": {
+   "A": "80D",
+   "B": "80CCD(1B)",
+   "C": "80G",
+   "D": "80TTA"
+  },
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": true,
+  "sortOrder": 540,
+  "knowledgeTopic": "the extra NPS deduction, 80CCD(1B)",
+  "wikiTitle": "National Pension System"
+ },
+ {
+  "code": "retirement_epf_job_change",
+  "text": "When you change jobs, what's usually best to do with your EPF balance?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Withdraw it — it's a nice bonus",
+   "B": "Transfer it to your new employer's account using your UAN",
+   "C": "Leave it in the old account and forget about it",
+   "D": "Withdraw half, keep half"
+  },
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 10,
+    "C": 4,
+    "D": 2
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 550,
+  "knowledgeTopic": null,
+  "wikiTitle": "Employees' Provident Fund Organisation"
+ },
+ {
+  "code": "retirement_corpus_estimate",
+  "text": "Roughly how many times your current annual expenses do you think you'll need saved by retirement?",
+  "type": "NUMBER",
+  "options": null,
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "PROFESSIONAL"
+  ],
+  "weight": 1,
+  "rubric": {
+   "numberThresholds": [
+    {
+     "min": 20,
+     "points": 10
+    },
+    {
+     "min": 15,
+     "points": 6
+    },
+    {
+     "min": 10,
+     "points": 3
+    },
+    {
+     "min": 0,
+     "points": 0
+    }
+   ]
+  },
+  "hint": null,
+  "unit": "× annual expenses",
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 560,
+  "knowledgeTopic": null,
+  "wikiTitle": "Trinity study"
+ },
+ {
+  "code": "retiree_runway_years",
+  "text": "At your current rate of spending from savings, roughly how many years do you estimate your retirement corpus would comfortably last?",
+  "type": "NUMBER",
+  "options": null,
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "numberThresholds": [
+    {
+     "min": 25,
+     "points": 10
+    },
+    {
+     "min": 15,
+     "points": 6
+    },
+    {
+     "min": 8,
+     "points": 3
+    },
+    {
+     "min": 0,
+     "points": 0
+    }
+   ]
+  },
+  "hint": null,
+  "unit": "years",
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 570,
+  "knowledgeTopic": null,
+  "wikiTitle": "Retirement spend-down"
+ },
+ {
+  "code": "retiree_healthcare_fund",
+  "text": "Do you have a dedicated health insurance or medical emergency fund, separate from your main retirement corpus?",
+  "type": "SINGLE",
+  "options": {
+   "A": "No",
+   "B": "I've been meaning to",
+   "C": "Yes, a small one",
+   "D": "Yes, sized for a major medical event"
+  },
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 3,
+    "C": 7,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 580,
+  "knowledgeTopic": null,
+  "wikiTitle": "Health insurance in India"
+ },
+ {
+  "code": "retiree_withdrawal_rate",
+  "text": "Roughly what share of your savings can you withdraw each year, so they're likely to last 25–30 years?",
+  "type": "SINGLE",
+  "options": {
+   "A": "About 1%",
+   "B": "About 3–4%",
+   "C": "About 8–10%",
+   "D": "About 15%"
+  },
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 590,
+  "knowledgeTopic": "a safe yearly withdrawal rate",
+  "wikiTitle": "Trinity study"
+ },
+ {
+  "code": "retiree_nomination_will",
+  "text": "Have you added nominees to your bank accounts, FDs and investments, and made a will?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Neither",
+   "B": "Nominees on some accounts, no will",
+   "C": "Nominees on all accounts, but no will yet",
+   "D": "Nominees everywhere, and a will"
+  },
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "optionPoints": {
+    "A": 0,
+    "B": 3,
+    "C": 6,
+    "D": 10
+   }
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": false,
+  "sortOrder": 600,
+  "knowledgeTopic": null,
+  "wikiTitle": "Will and testament"
+ },
+ {
+  "code": "retiree_form_15h",
+  "text": "If your total income is below the taxable limit, which form stops your bank deducting tax (TDS) from your FD interest?",
+  "type": "SINGLE",
+  "options": {
+   "A": "Form 15G",
+   "B": "Form 15H",
+   "C": "Form 16",
+   "D": "Form 26AS"
+  },
+  "category": "RETIREMENT",
+  "applicableProfiles": [
+   "RETIREE"
+  ],
+  "weight": 1,
+  "rubric": {
+   "correct": "B",
+   "points": 10
+  },
+  "hint": null,
+  "unit": null,
+  "minValue": null,
+  "maxValue": null,
+  "scaleLabels": null,
+  "variants": null,
+  "clarifies": null,
+  "valueMap": null,
+  "askIf": null,
+  "followUpReason": null,
+  "advanced": true,
+  "sortOrder": 610,
+  "knowledgeTopic": "Form 15H for tax on FD interest",
+  "wikiTitle": "Tax deduction at source"
+ }
+]

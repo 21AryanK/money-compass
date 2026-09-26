@@ -2,6 +2,7 @@ package com.moneycompass.auth;
 
 import com.moneycompass.config.MoneyCompassProperties;
 import com.moneycompass.domain.User;
+import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,11 @@ public class JwtService {
                 .claim("profileType", user.getProfileType().name())
                 .build();
 
-        String token = encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        // The header must name HS256: without one the encoder defaults to
+        // RS256, finds no RSA key among the configured JWKs, and fails with
+        // "Failed to select a JWK signing key".
+        JwsHeader header = JwsHeader.with(MacAlgorithm.HS256).build();
+        String token = encoder.encode(JwtEncoderParameters.from(header, claims)).getTokenValue();
         return new TokenPair(token, expiry);
     }
 

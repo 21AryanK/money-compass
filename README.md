@@ -65,11 +65,50 @@ curl -s -o /dev/null -w '%{http_code}\n' localhost:8080/api/me
 curl -s localhost:8080/api/me -H "Authorization: Bearer $TOKEN"
 ```
 
+## What the app does
+
+Everything the single-file prototype in `prototype/` does, backed by the real
+API. The prototype's rules were ported to Java line for line, and
+`PrototypeParityTest` replays 120 sessions the prototype itself produced to
+prove the two agree.
+
+| Screen | What's there |
+|---|---|
+| Sign in / register | Profile picked at registration; model status shown before sign-in |
+| Dashboard | Latest score and band, change since last time, history, resume an unfinished assessment, change profile |
+| Questionnaire | 61 questions with per-profile wording; "I don't know" on every question; simpler re-asks, follow-ups and skipped advanced questions, each explained; Back; live progress estimate; Wikipedia links |
+| Analysis | Narrates the real results as they arrive, including which model wrote the explanation and how long it took |
+| Score | Score ring, category breakdown ("n/a" where not assessed), money snapshot, AI explanation |
+| Risk | Tolerance, itemised capacity, band meter, choose a different band to plan around, allocation, AI rationale |
+| Investment plan | Monthly priorities, amount / horizon / step-up / vehicles, projection with range, after-fee-and-tax estimate, growth chart, instrument table, fund / sector / debt / gold / cash breakdowns, PDF report |
+| Ask Compass | Chat about your own results on every results screen |
+
+**How the AI parts work.**
+
+- **Explanations:** the model writes them from facts the application computed
+  (rupee figures included) and is told to use no other numbers.
+- **Regenerate:** the earlier drafts go back to the model at a higher
+  temperature, with an instruction to take a different angle. Every draft is
+  kept, so you can page through ‹ 2 / 3 ›.
+- **Feedback:** 👍 / 👎 is stored per draft.
+- **Ask Compass:** the application works out the topic and a grounded answer
+  first, so what-ifs are computed in Java, not by the model. The model then
+  rewrites that answer conversationally. Stock and crypto tips are declined
+  before any model is called.
+- **Without a model:** if no model answers, explanations and replies are
+  assembled from the same facts and labelled as such. Scores, bands and plans
+  never depend on a model.
+
 ## Tests
 
 ```bash
 cd backend && ./mvnw test
 ```
+
+Unit tests need nothing running: the prototype parity test, the narrative and
+assistant tests (with a mocked model), and formatting. To also check a real
+model's structured output, set `MC_LIVE_OLLAMA_MODEL` (for example
+`llama3.1:8b`); `LiveOllamaNarrativeTest` runs only then.
 
 Integration tests use Testcontainers against a real Postgres 16, not H2. The
 schema uses JSONB and `text[]`, neither of which H2 emulates faithfully, and a
@@ -132,6 +171,23 @@ fonts.googleapis.com during the build, which fails in any air gapped or
 network restricted CI runner. The fonts load from the CDN at runtime instead,
 with a system fallback in the stack.
 
-The questionnaire, score and risk screens call the endpoints defined in section
-5 of the specification. Those return 404 until Phases 2, 4 and 6 are built. Sign
-in, registration and model status work against the current backend.
+The screens and styling are the prototype's: its design system is
+`src/styles.scss`, and each prototype screen is a lazy-loaded route inside
+`shell/`. The PDF report uses jsPDF, loaded only on the first download.
+
+## Using a different Ollama install
+
+Everything about where Ollama lives is the one variable in `infra/.env`:
+
+```
+OLLAMA_BASE_URL=http://localhost:11434
+```
+
+Point it at wherever your Ollama is actually running - a different port, a
+machine on your LAN, a remote box - and restart the backend. Nothing else in
+the app needs editing. `docker-compose.yml` overrides this to `http://ollama:11434`
+for the backend *container* specifically, so if you run the backend with
+`./mvnw spring-boot:run` on your host instead, `infra/.env`'s value is the one
+that applies. `GET /api/health/ai` (once signed in) reports whether the
+configured URL is actually reachable and which model is on it, which is the
+fastest way to confirm a new path works before running the questionnaire.

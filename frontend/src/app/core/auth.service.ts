@@ -39,6 +39,13 @@ export class AuthService {
       .pipe(tap((user) => this.userSignal.set(user)));
   }
 
+  /** Switches the profile the next assessment is taken as; earlier results keep theirs. */
+  changeProfile(profileType: ProfileType): Observable<MeResponse> {
+    return this.http
+      .put<MeResponse>(`${this.base}/me/profile`, { profileType })
+      .pipe(tap((user) => this.userSignal.set(user)));
+  }
+
   logout(): void {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(EXPIRY_KEY);

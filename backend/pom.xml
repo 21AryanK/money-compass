@@ -68,8 +68,12 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
+            <!-- Spring Boot 4 moved each auto-configuration into its own module:
+                 with flyway-core alone nothing runs the migrations at startup,
+                 and ddl-auto=validate then fails on the missing tables. The
+                 starter brings flyway-core plus spring-boot-flyway. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
         </dependency>
         <dependency>
             <!-- Required since Flyway 10: the Postgres dialect lives in its own
@@ -116,12 +120,17 @@
         </dependency>
 
         <!-- ============ AI model starters ============ -->
-        <!-- Added in Phase 3. The BOM above is imported now so that the
-             version is already pinned when they land. Artifact IDs confirmed
-             against the Spring AI 2.0 reference documentation:
-               spring-ai-starter-model-ollama
-               spring-ai-starter-model-openai
-               spring-ai-starter-model-bedrock-converse -->
+        <!-- Ollama landed in Phase 3: it is the only provider that needs no
+             cloud credentials, so it is what makes `local` work out of the
+             box. OpenAI and Bedrock Converse are Phase 5 (`prod` profile);
+             adding their starters is a one-line addition here plus a new
+             branch in ResilientChatClient.resolveClient, nothing else
+             changes. Artifact ID confirmed against the Spring AI 2.0
+             reference documentation. -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-ollama</artifactId>
+        </dependency>
 
         <!-- ============ test ============ -->
         <dependency>
@@ -141,12 +150,14 @@
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>postgresql</artifactId>
+            <!-- Testcontainers 2.x (managed by Spring Boot 4) prefixes every
+                 module with "testcontainers-". -->
+            <artifactId>testcontainers-postgresql</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
