@@ -32,13 +32,19 @@ public class AssessmentSession {
     @Column(name = "completed_at")
     private Instant completedAt;
 
+    /** The profile this assessment was taken as; the user may have changed profile since. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "profile_type", nullable = false, length = 16)
+    private ProfileType profileType;
+
     protected AssessmentSession() {
         // for JPA
     }
 
-    public AssessmentSession(UUID id, UUID userId) {
+    public AssessmentSession(UUID id, UUID userId, ProfileType profileType) {
         this.id = id;
         this.userId = userId;
+        this.profileType = profileType;
         this.status = SessionStatus.IN_PROGRESS;
     }
 
@@ -52,4 +58,5 @@ public class AssessmentSession {
     public SessionStatus getStatus() { return status; }
     public Instant getStartedAt() { return startedAt; }
     public Instant getCompletedAt() { return completedAt; }
+    public ProfileType getProfileType() { return profileType; }
 }

@@ -245,17 +245,42 @@ Current pricing: https://aws.amazon.com/bedrock/pricing/
 
 ---
 
+### Thinking models
+
+```
+OLLAMA_DISABLE_THINKING=true
+```
+
+For qwen3, deepseek-r1 and other models with a reasoning mode. Their answers
+work either way (`<think>` blocks are stripped), but the reasoning pass can
+make each explanation take minutes on a CPU. Leave it `false` for models
+without one.
+
+If the model is unreachable, explanations and assistant replies are written
+from the user's numbers by the application and labelled as such, so the app
+still works. Resilience4j is the only retry layer: Spring AI's own retry is
+switched off (`spring.ai.retry.max-attempts: 1`) so a model that's down fails
+in seconds, not minutes.
+
+---
+
 ## 8. Application tuning
 
 ```
-QUESTIONNAIRE_MAX_QUESTIONS=15
+QUESTIONNAIRE_MAX_QUESTIONS=30
 AI_TEMPERATURE=0.2
 AI_MAX_TOKENS=800
 ```
 
-Applied to both providers on every call. Temperature is low because the
-narrative should be stable across refreshes; the numeric score never comes from
-the model at all, so temperature has no effect on it.
+`QUESTIONNAIRE_MAX_QUESTIONS` caps the *base* questions in a session. 30 covers
+every profile's full pool (professional is the largest), so no category drops
+out of anyone's score; follow-ups and "I don't know" re-asks come on top.
+
+Temperature applies to both providers on every first draft. It is low because
+the narrative should be stable across refreshes; the numeric score never comes
+from the model at all, so temperature has no effect on it. **Regenerate**
+deliberately raises it (to at least 0.8) so a new draft actually reads
+differently, and the assistant chat uses 0.5.
 
 ---
 

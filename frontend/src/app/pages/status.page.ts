@@ -13,49 +13,32 @@ import { describeProblem } from '../core/problem';
   selector: 'mc-status',
   imports: [LowerCasePipe],
   template: `
-    <div class="mc-shell">
-      <h1>Model status</h1>
-
+    <section class="stage">
       @if (error()) {
-        <p class="mc-error" role="alert">{{ error() }}</p>
+        <p class="app-error" role="alert">{{ error() }}</p>
       }
-
       @if (health(); as h) {
-        <table>
-          <caption class="sr-only">Primary and fallback model availability</caption>
-          <tbody>
-            <tr>
-              <th scope="row">Primary</th>
-              <td>{{ h.primary.provider }}</td>
-              <td>{{ h.primary.model }}</td>
-              <td [class.down]="!h.primary.up">{{ h.primary.up ? 'reachable' : 'not reachable' }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Fallback</th>
-              <td>{{ h.fallback.provider }}</td>
-              <td>{{ h.fallback.model }}</td>
-              <td [class.down]="!h.fallback.up">{{ h.fallback.up ? 'reachable' : 'not reachable' }}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p class="mc-muted">
-          Circuit breaker: {{ h.circuitState | lowercase }}. Open means the
-          primary is failing often enough that requests are going straight to
-          the fallback.
-        </p>
+        <div class="glass card">
+          <h3 style="margin-bottom:12px;">AI providers</h3>
+          @for (row of [{ name: 'Primary', p: h.primary }, { name: 'Fallback', p: h.fallback }]; track row.name) {
+            <div class="factor-row">
+              <span><b>{{ row.name }}</b> · {{ row.p.provider }} · {{ row.p.model }}</span>
+              <span class="d" [class.pos]="row.p.up" [class.neg]="!row.p.up">
+                {{ row.p.up ? 'reachable' : 'not reachable' }}{{ row.p.probeMs !== null ? ' · ' + row.p.probeMs + 'ms' : '' }}
+              </span>
+            </div>
+          }
+          <p style="font-size:13px; color:var(--ink-3); margin-top:14px;">
+            Circuit breaker: {{ h.circuitState | lowercase }}. Open means the primary is failing often enough that
+            requests are going straight to the fallback. If no model answers, explanations and chat replies are
+            written from your numbers by the app's rules and labelled as such — scores, risk bands and plans
+            never depend on a model.
+          </p>
+        </div>
+      } @else if (!error()) {
+        <div class="glass card loading-card"><div class="orb"></div><div>Checking the models…</div></div>
       }
-    </div>
-  `,
-  styles: `
-    table { border-collapse: collapse; margin-bottom: 1.5rem; width: 100%; max-width: 34rem; }
-    th, td { text-align: left; padding: 0.6rem 0.75rem 0.6rem 0; border-bottom: 1px solid var(--mc-rule); font-weight: 400; }
-    th { color: var(--mc-muted); font-size: 0.85rem; width: 6rem; }
-    .down { color: var(--mc-danger); }
-    .sr-only {
-      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-    }
+    </section>
   `,
 })
 export class StatusPage implements OnInit {

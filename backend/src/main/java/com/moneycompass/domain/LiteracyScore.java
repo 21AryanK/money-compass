@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import com.moneycompass.narrative.NarrativeDraft;
+
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -47,6 +51,11 @@ public class LiteracyScore {
     @Column(name = "model_used", length = 128)
     private String modelUsed;
 
+    /** Every narrative draft, oldest first; {@link #narrativeJson} mirrors the latest. */
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "narrative_drafts", nullable = false, columnDefinition = "jsonb")
+    private List<NarrativeDraft> narrativeDrafts = new ArrayList<>();
+
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private Instant createdAt;
 
@@ -64,6 +73,24 @@ public class LiteracyScore {
         this.narrativeJson = narrativeJson;
         this.providerUsed = providerUsed;
         this.modelUsed = modelUsed;
+    }
+
+    /** Appends a draft and makes it the current narrative. */
+    public void addDraft(NarrativeDraft draft) {
+        List<NarrativeDraft> drafts = new ArrayList<>(narrativeDrafts == null ? List.of() : narrativeDrafts);
+        drafts.add(draft);
+        this.narrativeDrafts = drafts;
+        attachNarrative(draft.content(), draft.provider(), draft.model());
+    }
+
+    /** Keeps only the newest {@code max} drafts. */
+    public void trimDrafts(int max) {
+        List<NarrativeDraft> drafts = getNarrativeDrafts();
+        if (drafts.size() > max) this.narrativeDrafts = new ArrayList<>(drafts.subList(drafts.size() - max, drafts.size()));
+    }
+
+    public List<NarrativeDraft> getNarrativeDrafts() {
+        return narrativeDrafts == null ? List.of() : narrativeDrafts;
     }
 
     public Long getId() { return id; }
